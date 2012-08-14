@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @objective.title
+
+= link_to 'Edit', edit_objective_path(@objective)
+\|
+= link_to 'Back', objectives_path
