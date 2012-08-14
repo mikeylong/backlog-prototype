@@ -1,10 +1,11 @@
-programs  = Program.create(title: "Program of Work")
-backlogs  = Backlog.create(title: "Common Backlog", program_id: Program.first.id)
-plans     = Plan.create(title: "Plan", program_id: Program.first.id)
-projects  = Project.create(title: "Team 1", plan_id: Plan.first.id)# ,
-#             Project.create(title: "Team 2", plan_id: plans.first),
-#             Project.create(title: "Team 3", plan_id: plans.first)
-objectives= Objective.create(title: "Foster a development community with API", backlog_id: Backlog.first.id)# ,
-#             Objective.create(title: "User growth with email integrations", backlog_id: backlogs.first),
-#             Objective.create(title: "Retain customers with favorites", backlog_id: backlogs.first),
-#             Objective.create(title: "User growth with address book import", backlog_id: backlogs.first)
+(1..3).each { |i| Program.create(title: "Program of Work #{i}") }
+
+(1..3).each { |i| Plan.create(title: "Great Plan #{i}", program_id: i) }
+
+(1..4).each { |i| Project.create(title: "Project #{i}", plan_id: 1) }
+(5..8).each { |i| Project.create(title: "Project #{i}", plan_id: 2) }
+(9..12).each { |i| Project.create(title: "Project #{i}", plan_id: 3) }
+
+(1..5).each { |i| Objective.create(title: "Objective #{i}", program_id: Program.first.id) }
+
+(6..10).each { |i| Objective.create(title: "Objective #{i}", program_id: Program.first.id, plan_id: Plan.first.id) }
