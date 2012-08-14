@@ -1,4 +1,6 @@
 CommonBacklog::Application.routes.draw do
+  
+  match '/programs/prioritize' => 'programs#prioritize'
   resources :objectives
 
   resources :plans

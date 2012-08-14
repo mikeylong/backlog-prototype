@@ -1,9 +1,11 @@
-%p#notice= notice
-
-%p
-  %b Title:
-  = @program.title
-
-= link_to 'Edit', edit_program_path(@program)
-\|
-= link_to 'Back', programs_path
+%ul.objectives
+  -@program.objectives.each do |objective|
+    %li.objective{'data-objective-id' => objective.id}
+      %span.handle.icon-align-justify
+      = objective.title
+      %span.cost
+        Cost:
+        = objective.cost
+      %span.value
+        Value:
+        = objective.value

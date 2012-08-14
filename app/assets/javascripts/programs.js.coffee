@@ -1,3 +1,10 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+jQuery ->
+  if $('.programs.show').length > 0
+    $(".objectives").sortable
+      handle: '.handle'
+      update: (event, ui) ->
+        objective_ids = []
+        $('.objective').each (index, item) ->
+          objective_ids.push $(item).data('objective-id')
+        $.post '/programs/prioritize', { 'objective_ids' : objective_ids }
+          

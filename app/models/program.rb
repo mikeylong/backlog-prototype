@@ -3,9 +3,5 @@ class Program < ActiveRecord::Base
   
   has_one :plan
   has_many :projects, through: :plan
-  has_many :objectives
-
-  def backlog
-    @objectives
-  end
+  has_many :objectives, order: 'position'
 end

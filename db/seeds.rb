@@ -6,6 +6,4 @@
 (5..8).each { |i| Project.create(title: "Project #{i}", plan_id: 2) }
 (9..12).each { |i| Project.create(title: "Project #{i}", plan_id: 3) }
 
-(1..5).each { |i| Objective.create(title: "Objective #{i}", program_id: Program.first.id) }
-
-(6..10).each { |i| Objective.create(title: "Objective #{i}", program_id: Program.first.id, plan_id: Plan.first.id) }
+(1..10).each { |i| Objective.create(title: "Objective #{i}", program_id: Program.first.id, plan_id: Plan.first.id, cost: rand(10), value: rand(10)) }

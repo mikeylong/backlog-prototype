@@ -68,6 +68,13 @@ class ProgramsController < ApplicationController
       end
     end
   end
+  
+  def prioritize
+    params[:objective_ids].each_index { |i| Objective.find(params[:objective_ids][i]).update_attribute 'position', i }
+    respond_to do |format|
+      format.json { head :no_content }
+    end
+  end
 
   # DELETE /programs/1
   # DELETE /programs/1.json
