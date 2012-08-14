@@ -1,19 +1,19 @@
-%h1 Listing programs
-
-%table
-  %tr
-    %th Title
-    %th
-    %th
-    %th
-
-  - @programs.each do |program|
-    %tr
-      %td= program.title
-      %td= link_to 'Show', program
-      %td= link_to 'Edit', edit_program_path(program)
-      %td= link_to 'Destroy', program, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Program', new_program_path
+%h1.page-header
+  Programs
+- @programs.each do |program|
+  .row
+    .span6
+      %h2.page-header
+        Projects
+        - program.projects.each do |project|
+          %h3= link_to project.title, project
+    .span6
+      %h2.page-header
+        Program Backlog
+      .size
+        = "#{program.objectives.size} Objectives"
+      %h2.page-header
+        Program Plan 
+      = link_to program.plan.title, program.plan
+      .size
+        = "#{program.plan.objectives.size} Objectives planned"
