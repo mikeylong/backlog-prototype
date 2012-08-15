@@ -1,12 +1,11 @@
 .row
   .span6
     = link_to "Add Objective", '#', class: 'btn btn-primary'
-    = link_to "Compare", '#', id: 'compare_button', class: 'btn pull-right'
     %hr
     %h6 
       Objectives
       %small.pull-right 
-        Select two objectives to compare
+        Select objectives for comparison
     %ul.objectives.unstyled
       -@program.objectives.each do |objective|
         %li.objective{'data-objective-id' => objective.id }

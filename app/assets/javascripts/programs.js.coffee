@@ -9,7 +9,7 @@ jQuery ->
         $('.objective').each (index, item) ->
           objective_ids.push $(item).data('objective-id')
         $.post '/programs/prioritize', { 'objective_ids' : objective_ids }
-    $('#compare_button').click (event) ->
+    $('.compare_checkbox').change (event) ->
       objectives = []
       costs = []
       values = []
