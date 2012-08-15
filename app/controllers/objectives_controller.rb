@@ -25,6 +25,7 @@ class ObjectivesController < ApplicationController
   # GET /objectives/new.json
   def new
     @objective = Objective.new
+    @objective.program = Program.find params[:program_id]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,10 +42,11 @@ class ObjectivesController < ApplicationController
   # POST /objectives.json
   def create
     @objective = Objective.new(params[:objective])
+    @objective.program = Program.find params[:program_id] 
 
     respond_to do |format|
       if @objective.save
-        format.html { redirect_to @objective, notice: 'Objective was successfully created.' }
+        format.html { redirect_to @objective.program, notice: 'Objective was successfully created.' }
         format.json { render json: @objective, status: :created, location: @objective }
       else
         format.html { render action: "new" }
@@ -60,7 +62,7 @@ class ObjectivesController < ApplicationController
 
     respond_to do |format|
       if @objective.update_attributes(params[:objective])
-        format.html { redirect_to @objective, notice: 'Objective was successfully updated.' }
+        format.html { redirect_to @objective.program, notice: 'Objective was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +78,7 @@ class ObjectivesController < ApplicationController
     @objective.destroy
 
     respond_to do |format|
-      format.html { redirect_to objectives_url }
+      format.html { redirect_to @objective.program, notice: 'Objective was successfully deleted.'  }
       format.json { head :no_content }
     end
   end

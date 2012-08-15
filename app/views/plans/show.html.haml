@@ -1,3 +1,7 @@
-%h1.page-header
-  = @plan.title
+#backlog_popover{rel: 'popover', title: 'Prioritized Backlog', content: "" }
 
+#droppable
+  = image_tag('online_retail_timeline_1.png')
+
+#backlog-list{'style' => 'display: none;'}
+  = render partial: 'backlog_list'

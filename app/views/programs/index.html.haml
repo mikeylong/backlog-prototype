@@ -1,20 +1,24 @@
-%h1.page-header
-  Programs
 - @programs.each do |program|
-  .row
-    .span6
-      %h2.page-header
-        Projects
-        - program.projects.each do |project|
-          %h3= link_to project.title, project
-    .span6
-      %h2.page-header
-        Program Backlog
-      .size
-        = "#{program.objectives.size} Objectives"
-      = link_to "Capture and prioritize", program
-      %h2.page-header
-        Program Plan
-      = link_to program.plan.title, program.plan
-      .size
-        = "#{program.plan.objectives.size} Objectives planned"
+  .program
+    %h2.page-header
+      = program.title
+    .row
+      .span6
+        %h3
+          Program Backlog
+          %small 
+            = link_to "Capture and prioritize", program
+        .size
+          %h6= "#{program.objectives.size} Objectives"
+        %br
+        %h3
+          Program Plan
+          %small
+            = link_to "Start planning", program.plan
+        .size
+          %h6= "#{program.plan.objectives.size} Objectives planned"
+      .span6
+        %h3
+          Program Projects
+          - program.projects.each do |project|
+            %h3= link_to project.title, project

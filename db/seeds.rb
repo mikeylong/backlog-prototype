@@ -1,9 +1,31 @@
-(1..3).each { |i| Program.create(title: "Program of Work #{i}") }
+objective_titles = [
+  "Black Friday Promotions",
+  "Gift Registry - Expecting Parents",
+  "Cart Sync - Increase AOV (average order value)",
+  "Wishlist",
+  "Customer Loyalty - Mobile Coupon",
+  "Geofencing - Exit Survey",
+  "Geofencing - In Store Promotions",
+  "Geofencing - Ask for Help",
+  "Geofencing - Price Check"
+]
 
-(1..3).each { |i| Plan.create(title: "Great Plan #{i}", program_id: i) }
+project_titles = [
+  "Android",
+  "iOS",
+  "Mobile Web",
+  "Web",
+  "POS"
+]
 
-(1..4).each { |i| Project.create(title: "Project #{i}", plan_id: 1) }
-(5..8).each { |i| Project.create(title: "Project #{i}", plan_id: 2) }
-(9..12).each { |i| Project.create(title: "Project #{i}", plan_id: 3) }
+programs = ['Online Retail', 'Point of Sale']
 
-(1..10).each { |i| Objective.create(title: "Objective #{i}", program_id: Program.first.id, plan_id: Plan.first.id, cost: rand(10), value: rand(10)) }
+programs.each { |title| Program.create(title: title) }
+
+(1..2).each { |i| Plan.create(title: "Great Plan #{i}", program_id: i) }
+
+generated_project_titles = (1..12).map {|i| "#{project_titles[(rand(project_titles.length))]} #{i}" }
+(1..4).each { |i| Project.create(title: generated_project_titles[i - 1], plan_id: 1) }
+(5..8).each { |i| Project.create(title: generated_project_titles[i - 1], plan_id: 2) }
+
+(1..10).each { |i| Objective.create(title: "#{objective_titles[(rand(objective_titles.length))]} #{i}", program_id: 1, plan_id: 1, cost: rand(1..10), value: rand(1..10)) }

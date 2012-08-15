@@ -1,3 +1,36 @@
 // Place all the styles related to the plans controller here.
 // They will automatically be included in application.css.
-// You can use Less here: http://lesscss.org/
+// You can use Less here: http://lesscss.org
+.plans.show {
+  .popover-inner {
+    overflow: visible;
+    .actions {
+      margin-top: 12px;
+    }
+  }
+  .objective:first-child {
+    border-top: 1px solid #eee;
+  }
+  .objective {
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    cursor: default;
+    .handle {
+      color: #666;
+      cursor: move;
+    }
+  }
+  padding-top: 0;
+  .navbar {
+    display: none;
+  }
+  #backlog_popover {
+    position: absolute;
+    top: 55px;
+    left: 300px;
+  }
+  img {
+    min-width: 1170px;
+  }
+}

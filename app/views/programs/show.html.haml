@@ -4,19 +4,17 @@
     = link_to "Start planning", @program.plan
 .row
   .span6
-    = link_to "Add Objective", new_objective_path, class: 'btn btn-primary'
-    %hr
+    .actions
+      = link_to "New Objective", new_program_objective_path(@program), class: 'btn btn-primary'
     %h6 
       Objectives
-      %small.pull-right 
-        Select objectives for comparison
     %ul.objectives.unstyled
       -@program.objectives.each do |objective|
         %li.objective{'data-objective-id' => objective.id }
           .row
             .span3
               .handle.icon-align-justify
-              = objective.title
+              = truncate(objective.title, length: 35)
             .span1
               Value:
               = objective.value
@@ -24,7 +22,18 @@
               Cost:
               = objective.cost
             .span1
-              = check_box "compare", objective.id, :class => 'compare_checkbox pull-right', 'data-title' => objective.title, 'data-value' => objective.value, 'data-cost' => objective.cost
+              = link_to "Edit", edit_program_objective_path(objective.program, objective)
+              = check_box "compare", objective.id, :class => 'compare_checkbox pull-right', 'data-title' => objective.title, 'data-value' => objective.value, 'data-cost' => objective.cost, 'data-ratio' => objective.ratio, 'data-id' => objective.id
   .span6  
-    .well
-      #chart
+    %ul#charts.nav.nav-tabs
+      %li.active
+        %a{href: '#first_chart', 'data-toggle' => 'tab'}
+          Chart
+      %li
+        %a{href: '#second_chart', 'data-toggle' => 'tab'}
+          Ratios
+    .tab-content
+      .tab-pane#first_chart.active
+        #chart
+      .tab-pane#second_chart
+        #ratio_chart
