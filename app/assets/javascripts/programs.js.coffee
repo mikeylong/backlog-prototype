@@ -25,6 +25,12 @@ jQuery ->
           renderTo: 'chart'
           type: 'column'
         series: [{name: 'Value', data: values}, {name: 'Cost', data: costs}]
-        xAxis: {
+        xAxis:
           categories: objectives
-        }
+        plotOptions:
+          series:
+            events:
+              mouseOver: (event) ->
+                console.log(event)
+              mouseOut: ->
+                console.log('out')
