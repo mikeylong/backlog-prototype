@@ -1,11 +1,27 @@
-%ul.objectives
-  -@program.objectives.each do |objective|
-    %li.objective{'data-objective-id' => objective.id}
-      %span.handle.icon-align-justify
-      = objective.title
-      %span.cost
-        Cost:
-        = objective.cost
-      %span.value
-        Value:
-        = objective.value
+.row
+  .span6
+    = link_to "Add Objective", '#', class: 'btn btn-primary'
+    = link_to "Compare", '#', id: 'compare_button', class: 'btn pull-right'
+    %hr
+    %h6 
+      Objectives
+      %small.pull-right 
+        Select two objectives to compare
+    %ul.objectives.unstyled
+      -@program.objectives.each do |objective|
+        %li.objective{'data-objective-id' => objective.id }
+          .row
+            .span3
+              .handle.icon-align-justify
+              = objective.title
+            .span1
+              Value:
+              = objective.value
+            .span1
+              Cost:
+              = objective.cost
+            .span1
+              = check_box "compare", objective.id, :class => 'compare_checkbox pull-right', 'data-title' => objective.title, 'data-value' => objective.value, 'data-cost' => objective.cost
+  .span6  
+    .well
+      #chart
