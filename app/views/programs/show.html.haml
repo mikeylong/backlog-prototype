@@ -1,6 +1,10 @@
+%h1.page-header
+  Capture and Prioritize
+  %small
+    = link_to "Start planning", @program.plan
 .row
   .span6
-    = link_to "Add Objective", '#', class: 'btn btn-primary'
+    = link_to "Add Objective", new_objective_path, class: 'btn btn-primary'
     %hr
     %h6 
       Objectives
