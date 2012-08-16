@@ -1,6 +1,6 @@
 fillChart = (container, objectives, series) ->
   message = ''
-  if series[0].data.length == 0
+  if series.lenght > 0 && series[0].data.length == 0
     message = 'Select objectives for comparison'
   new Highcharts.Chart
     title:
@@ -40,6 +40,66 @@ fillRatioChart = ->
   series = [{name: 'Value / Cost Ratio', data: ratios}]
   fillChart('ratio_chart', objectives, series)
 
+doSerie = (objective, value, cost, series) ->
+  series.push
+    name: objective
+    data: [[value, cost]]
+
+fillGraphChart = ->
+  objectives = []
+  costs = []
+  values = []
+  $('.objectives input:checked').each (index, checkbox) ->
+    checkbox = $(checkbox)
+    if checkbox.data('title').length > 15
+      objectives.push checkbox.data('title').substring(0, 15) + '...'
+    else
+      objectives.push checkbox.data('title')
+    costs.push checkbox.data('cost')
+    values.push checkbox.data('value')
+  series = []
+  (doSerie(objectives[i], values[i], costs[i], series) for i in [0..(objectives.length - 1)])
+  message = ''
+  if series.lenght > 0 && series[0].data.length == 0
+    message = 'Select objectives for comparison'
+  new Highcharts.Chart
+    title:
+      text: message
+    chart:
+      renderTo: 'graph_chart'
+      type: 'scatter'
+      zoomType: 'xy'
+    series: series
+    xAxis:
+      title:
+        enabled: true
+        text: 'Value'
+      startOnTick: true
+      endOnTick: true
+      showLastLabel: true
+      max: 10
+      min: 0
+    yAxis:
+      title:
+        text: 'Cost'
+      max: 10,
+      min: 0
+    tooltip:
+      formatter: ->
+        this.series.name;
+    plotOptions:
+      scatter:
+        marker:
+          radius: 8
+          states:
+            hover:
+              enabled: true
+              lineColor: 'rgb(100,100,100)'
+            states:
+              hover:
+                marker:
+                  enabled: false
+
 highlight = ->
   $('.compare_checkbox').each (index, checkbox) ->
     checkbox = $(checkbox)
@@ -75,9 +135,10 @@ fillBars = ->
 
 jQuery ->
   if $('.programs.show').length > 0
-    fillBars();
-    fillCostAndValueChart();
-    fillRatioChart();
+    fillBars()
+    fillCostAndValueChart()
+    fillRatioChart()
+    fillGraphChart()
     $(".objectives").sortable
       handle: '.handle'
       tolerance: 'pointer'
@@ -89,6 +150,7 @@ jQuery ->
         $.post '/programs/prioritize', { 'objective_ids' : objective_ids }
     $('.compare_checkbox').change(fillCostAndValueChart)
     $('.compare_checkbox').change(fillRatioChart)
+    $('.compare_checkbox').change(fillGraphChart)
     $('.compare_checkbox').change(highlight)
     
     $('#charts li a').click (e) ->
