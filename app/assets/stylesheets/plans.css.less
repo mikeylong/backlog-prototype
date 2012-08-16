@@ -12,13 +12,38 @@
     border-top: 1px solid #eee;
   }
   .objective {
-    padding: 6px 0;
-    border-bottom: 1px solid #eee;
-    background: #fff;
-    cursor: default;
-    .handle {
-      color: #666;
-      cursor: move;
+    cursor: move;
+    .objective_container {
+      margin-bottom: 5px;
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border: 1px solid #CCC;
+      height: 28px;
+      overflow: hidden;
+      background: #DDD url(/assets/bg_gradient_40.png) repeat;
+      .left_handle {
+        background: url(/assets/icon_draggable.png) no-repeat center center;
+        cursor: col-resize;
+        height: 30px;
+        left: 0;
+        position: absolute;
+        top: 1px;
+        width: 14px;
+      }
+      .right_handle {
+        background: url(/assets/icon_draggable.png) no-repeat center center;
+        cursor: col-resize;
+        height: 30px;
+        right: 0;
+        position: absolute;
+        top: 1px;
+        width: 14px;
+      }
+      .title {
+        margin-left: 14px;
+        margin-top: 5px;
+      }
     }
   }
   padding-top: 0;
