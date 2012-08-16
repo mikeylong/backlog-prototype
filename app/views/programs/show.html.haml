@@ -1,11 +1,9 @@
 %h1.page-header
   Capture and Prioritize
-  %small
-    = link_to "Start planning", @program.plan
 .row
   .span6
     .actions
-      = link_to "New Objective", new_program_objective_path(@program), class: 'btn btn-primary'
+      = link_to "New Objective", new_program_objective_path(@program), class: 'btn'
     .row
       .span3
         %h6 
@@ -34,7 +32,8 @@
               .fill
             .span1.compare_column
               = check_box "compare", objective.id, :class => 'compare_checkbox pull-right', 'data-title' => objective.title, 'data-value' => objective.value, 'data-cost' => objective.cost, 'data-ratio' => objective.ratio, 'data-id' => objective.id
-  .span6  
+  .span6
+    = link_to "Start Planning", @program.plan, class: 'btn pull-right btn-primary'
     %ul#charts.nav.nav-tabs
       %li.active
         %a{href: '#first_chart', 'data-toggle' => 'tab'}
