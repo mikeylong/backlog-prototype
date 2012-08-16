@@ -6,23 +6,33 @@
   .span6
     .actions
       = link_to "New Objective", new_program_objective_path(@program), class: 'btn btn-primary'
-    %h6 
-      Objectives
+    .row
+      .span3
+        %h6 
+          Objectives
+      .span1
+        %h6
+          Value
+      .span1
+        %h6
+          Cost
+      .span1
+        %h6
+          Compare
     %ul.objectives.unstyled
       -@program.objectives.each do |objective|
         %li.objective{'data-objective-id' => objective.id }
           .row
             .span3
               .handle.icon-align-justify
-              = truncate(objective.title, length: 35)
-            .span1
-              Value:
-              = objective.value
-            .span1
-              Cost:
-              = objective.cost
-            .span1
-              = link_to "Edit", edit_program_objective_path(objective.program, objective)
+              = truncate(objective.title, length: 32)
+              = link_to edit_program_objective_path(objective.program, objective), title: objective.title, rel: 'tooltip' do
+                .icon-edit
+            .span1.value{title: '', rel: 'tooltip'}
+              .fill
+            .span1.cost{title: '', rel: 'tooltip'}
+              .fill
+            .span1.compare_column
               = check_box "compare", objective.id, :class => 'compare_checkbox pull-right', 'data-title' => objective.title, 'data-value' => objective.value, 'data-cost' => objective.cost, 'data-ratio' => objective.ratio, 'data-id' => objective.id
   .span6  
     %ul#charts.nav.nav-tabs

@@ -10,8 +10,33 @@
       color: #666;
       cursor: move;
     }
+    a {
+      color: #666;
+    }
+    a:hover {
+      color: #08C;
+    }
     .compare_checkbox {
-      margin-right: 10px;
+      margin-right: 35px;
+    }
+    .cost, .value {
+      overflow: hidden;
+      .fill {
+        position: relative;
+        width: 50%;
+        display: inline-block;
+        height: 10px;
+      }
+    }
+    .value {
+      .fill {
+        background: rgb(88,111,165);
+      }
+    }
+    .cost {
+      .fill {
+        background: rgb(149,73,69);
+      }
     }
   }
   .objective.highlight {

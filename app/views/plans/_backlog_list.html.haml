@@ -7,4 +7,4 @@
           = truncate(objective.title)
 .actions
   = link_to "Re-Prioritize", @plan.program
-  = link_to "New Objective", new_objective_path, class: 'pull-right'
+  = link_to "New Objective", new_program_objective_path(@plan.program), class: 'pull-right'

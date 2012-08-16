@@ -16,14 +16,6 @@ fillChart = (container, objectives, series) ->
         text: ''
       labels:
         enabled: false
-    plotOptions:
-      series:
-        events:
-          mouseOver: (event) ->
-            debugger;
-            console.log(event)
-          mouseOut: ->
-            console.log('out')
 
 fillCostAndValueChart = ->
   objectives = []
@@ -56,8 +48,34 @@ highlight = ->
     else
       $('li[data-objective-id=' + checkbox.data('id') + ']').removeClass('highlight')
 
+fillBars = ->
+  objectives = {}
+  _($('.compare_checkbox')).each (checkbox) ->
+    checkbox = $(checkbox)
+
+    values = {};
+    values['value'] = parseInt(checkbox.data('value'))
+    values['cost'] = parseInt(checkbox.data('cost'))
+    values['ratio'] = parseInt(checkbox.data('ratio'))
+
+    objectives[checkbox.data('id')] = values
+  higher_value_objective = _(objectives).max (objective) ->
+    objective.value
+  higher_cost_objective = _(objectives).max (objective) ->
+    objective.cost
+  higher_value = higher_value_objective.value
+  higher_cost = higher_cost_objective.cost
+  _(objectives).each (objective, id) ->
+    objective.value_rank = Math.ceil(objective.value / higher_value * 100)
+    objective.cost_rank = Math.ceil(objective.cost / higher_cost * 100)
+    $('li[data-objective-id=' + id + '] .value .fill').attr('style', 'width: ' + objective.value_rank + '%');
+    $('li[data-objective-id=' + id + '] .value .fill').attr('data-original-title', objective.value);
+    $('li[data-objective-id=' + id + '] .cost .fill').attr('style', 'width: ' + objective.cost_rank + '%');
+    $('li[data-objective-id=' + id + '] .cost .fill').attr('data-original-title', objective.cost);
+
 jQuery ->
   if $('.programs.show').length > 0
+    fillBars();
     fillCostAndValueChart();
     fillRatioChart();
     $(".objectives").sortable
@@ -76,3 +94,12 @@ jQuery ->
     $('#charts li a').click (e) ->
       e.preventDefault()
       $(this).tab('show')
+      
+    $('.fill').tooltip({
+      placement: 'right',
+      trigger: 'hover'
+    })  
+    $('.fill').tooltip({
+      placement: 'right',
+      trigger: 'hover'
+    })
