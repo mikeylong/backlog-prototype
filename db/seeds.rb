@@ -28,4 +28,4 @@ generated_project_titles = (1..12).map {|i| "#{project_titles[(rand(project_titl
 (1..4).each { |i| Project.create(title: generated_project_titles[i - 1], plan_id: 1) }
 (5..8).each { |i| Project.create(title: generated_project_titles[i - 1], plan_id: 2) }
 
-(1..10).each { |i| Objective.create(title: "#{objective_titles[(rand(objective_titles.length))]} #{i}", program_id: 1, plan_id: 1, cost: rand(1..10).to_i, value: rand(1..10)) }
+(1..10).each { |i| Objective.create(title: "#{objective_titles[(rand(objective_titles.length))]} #{i}", program_id: 1, plan_id: 1, cost: rand(1..10).to_i, value: rand(1..10).to_i) }
