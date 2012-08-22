@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20120814211331) do
     t.string   "title"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "backlog_id"
     t.integer  "program_id"
     t.integer  "plan_id"
     t.integer  "cost"

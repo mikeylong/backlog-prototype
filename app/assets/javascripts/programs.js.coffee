@@ -26,7 +26,7 @@ fillCostAndValueChart = ->
     objectives.push checkbox.data('title')
     costs.push checkbox.data('cost')
     values.push checkbox.data('value')
-  series = [{name: 'Value', data: values}, {name: 'Cost', data: costs}]
+  series = [{name: 'Value', data: values}, {name: 'Size', data: costs}]
   fillChart('chart', objectives, series)
 
 fillRatioChart = ->
@@ -37,7 +37,7 @@ fillRatioChart = ->
     objectives.push checkbox.data('title')
     ratios.push checkbox.data('ratio')
 
-  series = [{name: 'Value / Cost Ratio', data: ratios}]
+  series = [{name: 'Value / Size Ratio', data: ratios}]
   fillChart('ratio_chart', objectives, series)
 
 doSerie = (objective, value, cost, series) ->
@@ -81,7 +81,7 @@ fillGraphChart = ->
       min: 0
     yAxis:
       title:
-        text: 'Cost'
+        text: 'Size'
       max: 10,
       min: 0
     tooltip:
