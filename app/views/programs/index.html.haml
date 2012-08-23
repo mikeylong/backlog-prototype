@@ -5,18 +5,23 @@
     .row
       .span6
         %h3
-          Program Backlog
-          %small 
-            = link_to "Capture and prioritize", program
+          - if program.objectives.size < 1
+            = link_to "Backlog", new_program_objective_path(program)
+          - else
+            = link_to "Backlog", program
         .size
-          %h6= "#{program.objectives.size} Objectives"
+          - if program.objectives.size > 0
+            %h6= "#{program.objectives.size} Objectives"
+          - else
+            %p= "The Backlog is a prioritized list of objectives."
         %br
         %h3
-          Program Plan
-          %small
-            = link_to "Start planning", program.plan
+          = link_to "Plan", program.plan
         .size
-          %h6= "#{program.plan.objectives.size} Objectives planned"
+          - if program.plan.objectives.size > 0
+            %h6= "#{program.plan.objectives.size} Objectives planned"
+          - else
+            %p= "The Plan allows you track the progress of your objectives."
       .span6
         %h3
           Program Projects

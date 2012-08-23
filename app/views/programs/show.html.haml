@@ -24,7 +24,7 @@
             .span3
               .handle.icon-align-justify
               = truncate(objective.title, length: 32)
-              = link_to edit_program_objective_path(objective.program, objective), title: objective.title, rel: 'tooltip' do
+              = link_to edit_program_objective_path(objective.program, objective), title: objective.description, rel: 'tooltip' do
                 .icon-edit
             .span1.value{title: '', rel: 'tooltip'}
               .fill
