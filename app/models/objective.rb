@@ -3,6 +3,7 @@ class Objective < ActiveRecord::Base
   belongs_to :program
   attr_accessible :title, :cost, :value, :program_id, :plan_id, :position, :description
   validates :title, presence: :true
+  validates :description, presence: :true
   validates :cost, presence: :true
   validates :value, presence: :true
   validates_numericality_of :cost, :only_integer => true, :message => "Can only be whole number."
