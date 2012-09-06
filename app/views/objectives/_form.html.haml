@@ -10,13 +10,13 @@
     = f.label :title
     = f.text_field :title
   .field
-    = f.label :description
-    = f.text_area :description, :rows => 3, :cols => 40 
+    = f.label "Purpose"
+    = f.text_area :description, :rows => 3, :cols => 40, :placeholder => "Describe the purpose of this objective"
   .field
     = f.label :value
-    = f.text_field :value
+    = f.number_field :value
   .field
     = f.label "Size"
-    = f.text_field :cost
+    = f.number_field :cost
   .actions
     = f.submit 'Save', class: 'btn btn-primary'
